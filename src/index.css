@@ -1,0 +1,274 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 40 20% 98%;
+    --foreground: 224 40% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 224 40% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 40% 14%;
+
+    --primary: 224 76% 48%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 220 20% 95%;
+    --secondary-foreground: 224 30% 25%;
+
+    --muted: 220 14% 92%;
+    --muted-foreground: 220 10% 46%;
+
+    --accent: 224 60% 96%;
+    --accent-foreground: 224 76% 48%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 152 69% 31%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 90% 10%;
+
+    --border: 220 15% 89%;
+    --input: 220 14% 92%;
+    --ring: 224 76% 48%;
+
+    --radius: 0.75rem;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 224 30% 25%;
+    --sidebar-primary: 224 76% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 224 60% 96%;
+    --sidebar-accent-foreground: 224 76% 48%;
+    --sidebar-border: 220 15% 89%;
+    --sidebar-ring: 224 76% 48%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+    background-image:
+      radial-gradient(at 0% 0%, hsl(224 76% 48% / 0.04) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, hsl(262 60% 55% / 0.04) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, hsl(152 69% 31% / 0.03) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, hsl(38 92% 50% / 0.03) 0px, transparent 50%);
+    background-attachment: fixed;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, hsl(220 15% 80% / 0.25) 1px, transparent 0);
+    background-size: 32px 32px;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+@layer components {
+  .section-container {
+    @apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .input-field {
+    @apply w-full h-11 px-4 rounded-lg bg-white border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary/50 transition-all duration-200 shadow-sm hover:shadow-md;
+  }
+
+  .card-base {
+    @apply bg-white border border-border/70 rounded-xl;
+    box-shadow:
+      0 1px 3px 0 rgb(0 0 0 / 0.04),
+      0 4px 14px -2px rgb(0 0 0 / 0.05),
+      0 0 0 1px rgb(0 0 0 / 0.02);
+  }
+
+  .card-hover {
+    @apply card-base transition-all duration-300 cursor-pointer;
+    transform: translateY(0);
+  }
+
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 4px 12px -2px hsl(var(--primary) / 0.1),
+      0 12px 28px -4px rgb(0 0 0 / 0.08),
+      0 0 0 1px hsl(var(--primary) / 0.1);
+    border-color: hsl(var(--primary) / 0.25);
+  }
+
+  .badge-status {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold;
+  }
+
+  .badge-success {
+    @apply badge-status bg-emerald-50 text-emerald-700 border border-emerald-200;
+  }
+
+  .badge-warning {
+    @apply badge-status bg-amber-50 text-amber-700 border border-amber-200;
+  }
+
+  .badge-info {
+    @apply badge-status bg-blue-50 text-blue-700 border border-blue-200;
+  }
+
+  .link-text {
+    @apply text-primary hover:text-primary/80 transition-colors;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(224 76% 48%), hsl(262 60% 55%), hsl(224 76% 60%));
+  }
+
+  .text-gradient-warm {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(38 92% 50%), hsl(25 95% 53%));
+  }
+
+  .text-gradient-success {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(152 69% 31%), hsl(160 70% 40%));
+  }
+
+  .glass-effect {
+    @apply bg-white/80 backdrop-blur-xl border border-border/50;
+    box-shadow:
+      0 4px 16px 0 rgba(0, 0, 0, 0.06),
+      0 0 0 1px rgba(0, 0, 0, 0.02);
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 24px -6px hsl(var(--primary) / 0.35);
+  }
+
+  .glow-success {
+    box-shadow: 0 0 24px -6px hsl(var(--success) / 0.35);
+  }
+
+  .skeleton {
+    @apply animate-pulse rounded-lg bg-muted;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: fadeIn 0.4s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pulseGlow {
+
+    0%,
+    100% {
+      box-shadow: 0 0 20px -8px hsl(var(--primary) / 0.3);
+    }
+
+    50% {
+      box-shadow: 0 0 32px -4px hsl(var(--primary) / 0.5);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -1000px 0;
+    }
+
+    100% {
+      background-position: 1000px 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg,
+        hsl(var(--muted)) 0%,
+        hsl(var(--muted-foreground) / 0.06) 50%,
+        hsl(var(--muted)) 100%);
+    background-size: 2000px 100%;
+    animation: shimmer 2s linear infinite;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.25);
+  border-radius: 10px;
+  border: 2px solid hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.4);
+}
+
+[data-radix-popper-content-wrapper] {
+  z-index: 50 !important;
+}
+
+[role="dialog"] {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  max-height: 90vh;
+  overflow-y: auto;
+}
